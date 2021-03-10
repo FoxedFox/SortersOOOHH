@@ -104,8 +104,8 @@ selection:
     case 1:
     {
         cout << "select the sort order: 1)ascending 2) descending" << endl;
+    sortorderbogo:        
         cin >> sort_order;
- sortorderbogo:
         if (sort_order == 1)
         {
             arr = bogoSort(arr, size, ASC);
@@ -115,6 +115,12 @@ selection:
         printArray(arr, size);
         delete arr;
         cout << endl;
+        break;
+        goto selection;
+    }
+    case 2:
+    {
+        
         break;
         goto selection;
     }
