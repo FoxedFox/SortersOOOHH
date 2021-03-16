@@ -1,3 +1,3 @@
 ﻿  Sorters_OOOHH.cpp
-C:\Users\Рыба\source\repos\Sorters_OOOHH\Sorters_OOOHH\Sorters_OOOHH.cpp(91,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Рыба\source\repos\Sorters_OOOHH\Sorters_OOOHH\Sorters_OOOHH.cpp(91,19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   Sorters_OOOHH.vcxproj -> C:\Users\Рыба\source\repos\Sorters_OOOHH\Debug\Sorters_OOOHH.exe

@@ -81,57 +81,64 @@ void printArray(int* arr, int n)
         cout << arr[i] << " ";
     }
 }
+int* SelectionSort()
+{
 
+}
 
 int main(int argc, char** argv)
 {
-    int y=0;
+    int y = 0;
     while (y == 0)
     {
- srand(time(NULL));
-    int sort_order;
-    int* arr;
-    int size, type_S;
-    cout << "Print the size of array (random values in cells)"<< endl <<"n = ";
-    cin >> size;
-    arr = new int[size];
-    arr = fillArray(arr, size);
-selection:  
-    cout << "Select type of sort:" << endl << "1) Bogosort" << endl <<"0) EXIT"<<endl;
-    cin >> type_S;
-    switch (type_S)
-    {
-    case 1:
-    {
-        cout << "select the sort order: 1)ascending 2) descending" << endl;
-    sortorderbogo:        
-        cin >> sort_order;
-        if (sort_order == 1)
+        srand(time(NULL));
+        int yy = 0;
+        int sort_order;
+        int* arr;
+        int size, type_S;
+        cout << "Print the size of array (random values in cells)" << endl << "n = ";
+        cin >> size;
+        arr = new int[size];
+        arr = fillArray(arr, size);
+
+        cout << "Select type of sort:" << endl << "1) Bogosort" << endl << "0) EXIT" << endl;
+        cin >> type_S;
+        switch (type_S)
         {
-            arr = bogoSort(arr, size, ASC);
+        case 1:
+        {
+            cout << "select the sort order: 1)ascending 2) descending" << endl;
+            while (yy == 0)
+            {
+                cin >> sort_order;
+                if (sort_order == 1)
+                {
+                    arr = bogoSort(arr, size, ASC);
+                    yy = 1;
+                }
+                else if (sort_order == 2)
+                {
+                    arr = bogoSort(arr, size, DESC);
+                    yy = 1;
+                }
+            }
+            printArray(arr, size);
+            delete arr;
+            cout << endl;
+            break;
         }
-        else if (sort_order == 2)  arr = bogoSort(arr, size, DESC);
-        else goto sortorderbogo;      
-        printArray(arr, size);
-        delete arr;
-        cout << endl;
-        break;
-        goto selection;
+        case 2:
+        {
+
+            break;
+
+        }
+        case 0:
+            y = 1;
+        default:
+        {
+            cout << endl << "Wrong variant" << endl;
+        }
+        }
     }
-    case 2:
-    {
-        
-        break;
-        goto selection;
-    }
-    case 0:
-        y = 1;
-    default:
-    {
-        cout << endl << "Wrong variant" << endl;
-        goto selection;
-    }
-    }
-}
-   
 }
