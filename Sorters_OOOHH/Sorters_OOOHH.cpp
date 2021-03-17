@@ -83,10 +83,68 @@ void printArray(int* arr, int n)
 }
 int* SelectionSort()
 {
-
+    return 0;
 }
 
-int main(int argc, char** argv)
+#ifndef _STOP_WATCH_HPP_
+#define _STOP_WATCH_HPP_
+#include <cassert> 
+#include <chrono>
+#include "windows.h"
+using namespace std;
+class stop_watch {
+    std::chrono::high_resolution_clock::time_point last_time_point;
+    std::chrono::duration<double> time_duration;
+    bool is_running;
+public:
+    stop_watch() :
+        last_time_point{ std::chrono::high_resolution_clock::now() },
+        time_duration{ std::chrono::duration<double>::zero() },
+        is_running{ false }
+    {}
+    void start() {
+        assert(!is_running); // stop watch is already running
+        last_time_point = std::chrono::high_resolution_clock::now();
+        time_duration = std::chrono::duration<double>::zero();
+        is_running = true;
+    }
+    void stop() {
+        assert(is_running); // stop watch is not running
+        auto n = std::chrono::high_resolution_clock::now();
+        time_duration = n - last_time_point;
+        last_time_point = n;
+        is_running = false;
+    }
+    double hours() {
+        return std::chrono::duration_cast<std::chrono::hours>(
+            time_duration).count();
+    }
+    friend std::ostream& operator<<(std::ostream& out, stop_watch sw) {
+        std::chrono::hours h = std::chrono::duration_cast<
+            std::chrono::hours>(sw.time_duration);
+        if (h.count()) { out << h.count() << "h "; sw.time_duration -= h; }
+        std::chrono::minutes m = std::chrono::duration_cast<
+            std::chrono::minutes>(sw.time_duration);
+        if (m.count()) { out << m.count() << "min "; sw.time_duration -= m; }
+        std::chrono::seconds s = std::chrono::duration_cast<
+            std::chrono::seconds>(sw.time_duration);
+        if (s.count()) { out << s.count() << "s "; sw.time_duration -= s; }
+        std::chrono::milliseconds ms = std::chrono::duration_cast<
+            std::chrono::milliseconds>(sw.time_duration);
+        if (ms.count()) { out << ms.count() << "ms "; sw.time_duration -= ms; }
+        std::chrono::microseconds us = std::chrono::duration_cast<
+            std::chrono::microseconds>(sw.time_duration);
+        if (us.count()) { out << us.count() << "us "; sw.time_duration -= us; }
+        std::chrono::nanoseconds ns = std::chrono::duration_cast<
+            std::chrono::nanoseconds>(sw.time_duration);
+        if (ns.count()) { out << ns.count() << "ns "; sw.time_duration -= ns; }
+        return out;
+    }
+};
+
+#endif
+
+int main()
 {
     int y = 0;
     while (y == 0)
@@ -100,7 +158,7 @@ int main(int argc, char** argv)
         cin >> size;
         arr = new int[size];
         arr = fillArray(arr, size);
-
+        stop_watch sw;
         cout << "Select type of sort:" << endl << "1) Bogosort" << endl << "0) EXIT" << endl;
         cin >> type_S;
         switch (type_S)
@@ -108,21 +166,28 @@ int main(int argc, char** argv)
         case 1:
         {
             cout << "select the sort order: 1)ascending 2) descending" << endl;
+
             while (yy == 0)
             {
-                cin >> sort_order;
+                cin >> sort_order;            
+               
+                sw.start();
                 if (sort_order == 1)
                 {
+
                     arr = bogoSort(arr, size, ASC);
                     yy = 1;
                 }
                 else if (sort_order == 2)
                 {
+
                     arr = bogoSort(arr, size, DESC);
                     yy = 1;
                 }
             }
             printArray(arr, size);
+            sw.stop();
+            cout <<endl<< "It took " << sw << endl;
             delete arr;
             cout << endl;
             break;
