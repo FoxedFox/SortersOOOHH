@@ -1,3 +1,5 @@
 ﻿  Sorters_OOOHH.cpp
-C:\Users\Рыба\source\repos\Sorters_OOOHH\Sorters_OOOHH\Sorters_OOOHH.cpp(152,19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Рыба\source\repos\Sorters_OOOHH\Sorters_OOOHH\Sorters_OOOHH.cpp(86,34): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Рыба\source\repos\Sorters_OOOHH\Sorters_OOOHH\Sorters_OOOHH.cpp(90,46): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Рыба\source\repos\Sorters_OOOHH\Sorters_OOOHH\Sorters_OOOHH.cpp(175,19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   Sorters_OOOHH.vcxproj -> C:\Users\Рыба\source\repos\Sorters_OOOHH\Debug\Sorters_OOOHH.exe
