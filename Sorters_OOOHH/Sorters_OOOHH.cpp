@@ -1,6 +1,9 @@
 ﻿#include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <cassert> 
+#include <chrono>
+#include "windows.h"
 using namespace std;
 enum  SortOrder
 {
@@ -94,21 +97,18 @@ int* SelectionSort(int *arr, int n, SortOrder sortorder)
                 min_idx = idx_j;
             }
         }
-
         if (min_idx != idx_i)
         {
             swap(arr[idx_i], arr[min_idx]);
         }
+        for (int i = 0; i < n; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
     }
     return 0;
 }
-
-#ifndef _function_timer_HPP_
-#define _function_timer_HPP_
-#include <cassert> 
-#include <chrono>
-#include "windows.h"
-using namespace std;
 class function_timer {
     std::chrono::high_resolution_clock::time_point last_time_point;
     std::chrono::duration<double> time_duration;
@@ -164,9 +164,6 @@ public:
         return out;
     }
 };
-
-#endif
-
 int main()
 {
     int y = 0;
